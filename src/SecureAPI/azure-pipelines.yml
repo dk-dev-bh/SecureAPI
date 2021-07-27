@@ -27,7 +27,7 @@ steps:
   displayName: 'dotnet publish --configuration $(buildConfiguration) -- output $(Build.ArtifactStagingDirectory)'
   inputs:
     command: publish
-    projects: 'SecureAPI/SecureAPI.csproj'
+    projects: 'SecureAPI/src/SecureAPI/SecureAPI.csproj'
     arguments: '--configuration $(buildConfiguration) -- output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
 
