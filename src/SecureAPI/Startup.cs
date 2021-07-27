@@ -28,11 +28,11 @@ namespace SecureAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            // .AddJwtBearer(opt => {
-            //     opt.Audience = Configuration["AAD:ResourceId"];
-            //     opt.Authority = $"{Configuration["AAD:Instance"]}{Configuration["AAD:TenantId"]}";
-            // });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(opt => {
+                opt.Audience = Configuration["AAD:ResourceId"];
+                opt.Authority = $"{Configuration["AAD:Instance"]}{Configuration["AAD:TenantId"]}";
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -54,7 +54,7 @@ namespace SecureAPI
 
             app.UseRouting();
 
-            // app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
