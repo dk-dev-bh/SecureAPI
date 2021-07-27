@@ -24,7 +24,7 @@ steps:
   displayName: Build
   inputs:
     command: build
-    projects: 'SecureAPI/src/SecureAPI/SecureAPI.csproj'
+    projects: 'SecureAPI/src/*/**.csproj'
     arguments: '-configuration $(buildconfiguration)'
 
 - task: DotNetCoreCLI@2
