@@ -30,5 +30,12 @@ steps:
     projects: 'SecureAPI/SecureAPI.csproj'
     arguments: '--configuration $(buildConfiguration) -- output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
+
+- task: CopyFiles@2
+  inputs:
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishBuildArtifacts@1
   displayName: 'publish artifacts'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
