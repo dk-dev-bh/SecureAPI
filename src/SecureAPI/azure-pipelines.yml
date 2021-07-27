@@ -31,7 +31,7 @@ steps:
   inputs:
     command: build
     projects: '**/*.csproj'
-    arguments: '-configuration $(buildconfiguration)'
+    arguments: '--configuration $(buildconfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) -- output $(Build.ArtifactStagingDirectory)'
