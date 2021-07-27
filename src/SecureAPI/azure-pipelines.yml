@@ -20,8 +20,12 @@ steps:
     projects: '**/*Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
     
-- script: dotnet build --configuration $(buildconfiguration)
-  displayName: 'dotnet build $(buildconfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: 'SecureAPI/src/SecureAPI/SecureAPI.csproj'
+    arguments: '-configuration $(buildconfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) -- output $(Build.ArtifactStagingDirectory)'
