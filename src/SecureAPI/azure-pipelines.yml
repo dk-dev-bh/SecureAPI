@@ -15,26 +15,27 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
-  displayName: Restore
+  displayName: 'Restore Packages'
   inputs:
     command: restore
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Run Unit Tests'
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
     
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: 'Build Projects'
   inputs:
     command: build
     projects: '**/*.csproj'
     arguments: '--configuration $(buildconfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet publish --configuration $(buildConfiguration) -- output $(Build.ArtifactStagingDirectory)'
+  displayName: 'Publish Projects'
   inputs:
     command: publish
     projects: 'SecureAPI/src/SecureAPI/SecureAPI.csproj'
@@ -42,10 +43,11 @@ steps:
     zipAfterPublish: true
 
 - task: CopyFiles@2
+  displayName: 'Copy Artifacts'
   inputs:
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
-  displayName: 'publish artifacts'
+  displayName: 'Publish Artifacts'
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
